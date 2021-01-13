@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", initial-scale=1.0">
+    <title>UmbrUI-Designer</title>
+</head>
+<body>
+    <h1>UmbrUI-Designer</h1>
+    <div class="screen">
+        <div class=heading>
+            <img id="umbrel-img" src="logo.svg">
+            <div id="qr"></div>
+        </div>
+        <div id="tor"></div>
+        <div class="editable-sections">
+            <div class="info-section">
+                <select onchange="selectOption(event)" class="info-selector" name="cars" id="cars">
+                  </select>
+            </div>
+            <div class="info-section">
+                <select onchange="selectOption(event)" class="info-selector" name="cars" id="cars">
+                  </select>
+            </div>
+            <div class="info-section">
+                <select onchange="selectOption(event)" class="info-selector" name="cars" id="cars">
+                  </select>
+            </div>
+            <div class="info-section">
+                <select onchange="selectOption(event)" class="info-selector" name="cars" id="cars">
+                  </select>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+        margin-top: 15px;
+    }
+
+    #umbrel-img {
+        width: 85px;
+    }
+
+    #qr {
+        width: 100px;
+        height: 100px;
+        background-color: black;
+    }
+
+    #tor {
+        width: 90%;
+        height: 35px;
+        margin: 0 auto;
+        background-color: black;
+    }
+
+    .screen {
+        background-color: rgb(247,249,251);
+        width: 480px;
+        height: 320px;
+        border-radius: 6px;
+        border: 1px solid black;
+    }
+
+    .editable-sections {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 15px;
+        padding: 20px 0;
+    }
+
+    .info-section {
+        width: 120px;
+        height: 30px;
+        background-color: black;
+        justify-self: center;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script>
+    const availableOptions = [
+        {
+            id: "forwards",
+            label: "Forwards"
+        },
+        {
+            id: "recieve",
+            label: "Max Recieve"
+        },
+        {
+            id: "send",
+            label: "Max Send"
+        },
+        {
+            id: "sync",
+            label: "Sync Status"
+        }
+    ];
+
+    const selected = [];
+
+    const selectors = document.querySelectorAll(".info-selector");
+
+    function setupLists() {
+        for (var i = 0; i < selectors.length; i++) {
+            for (var j = 0; j < availableOptions.length; j++) {
+                const option = availableOptions[j];
+                const optionEl = document.createElement("option");
+                optionEl.text = option.label;
+                optionEl.value = option.id;
+                
+                selectors[i].add(optionEl);
+            };
+        };
+    }
+
+    function updateLists() {
+        for (var i = 0; i < selectors.length; i++) {
+            const options = selectors[i].children;
+            for (var j = 0; j < options.length; j++) {    
+                options[j].disabled = selected.includes(options[j].value);
+            }
+
+        }
+    }
+
+    function selectOption(event) {
+        selected.push(event.target.value);
+        updateLists();
+    }
+
+    setupLists();
+
+</script>
