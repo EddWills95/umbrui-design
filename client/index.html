@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", initial-scale=1.0">
+    <title>UmbrUI-Designer</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <h1>UmbrUI-Designer</h1>
+    <div class="screen">
+        <div class=heading>
+            <img id="umbrel-img" class="rounded-edge" src="logo.svg">
+            <div id="qr" class="rounded-edge"></div>
+        </div>
+        <div id="tor" class="rounded-edge"></div>
+        <div id="editable-section"></div>
+    </div>
+</body>
+</html>
+
+<style>
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+        margin-top: 15px;
+    }
+
+    #umbrel-img {
+        width: 85px;
+    }
+
+    #qr {
+        width: 100px;
+        height: 100px;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(135,135,135,0.9654236694677871) 0%, rgba(61,61,61,0.9206057422969187) 100%);
+    }
+
+    #tor {
+        width: 90%;
+        height: 20px;
+        margin-left: 14px;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(135,135,135,0.9654236694677871) 0%, rgba(61,61,61,0.9206057422969187) 100%);
+    }
+
+    .rounded-edge {
+        border-radius: 5px;
+    }
+
+    .screen {
+        background-color: rgb(247,249,251);
+        width: 480px;
+        height: 320px;
+        border-radius: 6px;
+        border: 1px solid black;
+    }
+
+    #editable-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 20px;
+        padding: 20px 0;
+        margin-top: 8px;
+    }
+
+    .info-section {
+        width: 120px;
+        height: 30px;
+        background-color: black;
+        justify-self: center;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .info-section::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: -12px;
+        left: 0px;
+        width: 30px;
+        height: 10px;
+        background: linear-gradient(90deg, rgba(135,135,135,0.9654236694677871) 0%, rgba(61,61,61,0.9206057422969187) 100%);
+        border-radius: 5px;
+    }
+</style>
+

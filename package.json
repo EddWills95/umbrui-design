@@ -1,0 +1,22 @@
+{
+  "name": "umbrui-design",
+  "version": "1.0.0",
+  "description": "- A really simple designer that will allow users to chose what is shown on their screen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddWills95/umbrui-design.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddWills95/umbrui-design/issues"
+  },
+  "homepage": "https://github.com/EddWills95/umbrui-design#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
