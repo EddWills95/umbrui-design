@@ -1,4 +1,20 @@
 let selectedOptions = [];
+const availableOptions = [
+    "torURL",
+    "activeChannels",
+    "forward",
+    "maxReceive",
+    "maxSend",
+    "syncProgress"
+];
+
+// Will remove all Selects
+function clearLists() {
+    const section = document.getElementById("editable-section");
+
+    section.innerHTML = '';
+}
+
 
 async function getElements() {
     const response = await fetch("http://localhost:4200/data")
@@ -6,15 +22,18 @@ async function getElements() {
     return data;
 };
 
-function updateList() {
-    return fetch('http://localhost:4200/data', {
+async function updateList() {
+    clearLists();
+    const response = await fetch('http://localhost:4200/data', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(selected),
+        body: JSON.stringify(selectedOptions),
     })
-    .then(response => response.json())
+    const data = await response.json();
+    console.log(data);
+    loadUI(data);
 }
 
 function createOption(option) {
@@ -31,16 +50,17 @@ function createSelect(index, options) {
     // Create Select Element with options
     const selectEl = document.createElement("select");
     selectEl.className = "info-selector";
-    selectEl.onclick = (event) => {
+    selectEl.onchange = (event) => {
         // Update the index in array
-        selectedOptions.splice(index, )
+        selectedOptions.splice(index, 1, event.target.value);
+        updateList()
     }
 
     // Create options
-    for (var i = 0; i < options.length; i++) { 
+    for (var i = 0; i < availableOptions.length; i++) { 
         const optionEl = document.createElement("option");
-        optionEl.text = options[i];
-        optionEl.value = options[i];
+        optionEl.text = availableOptions[i];
+        optionEl.value = availableOptions[i];
         selectEl.add(optionEl)
     }
 
@@ -66,7 +86,16 @@ async function loadElements() {
     return elements;
 }
 
-loadElements().then((d) => {
-    setupLists(d.displayedElements);
-    selectedOptions = d.displayedElements;
-});
+function loadUI(data = undefined) {
+    if (data) {
+        console.log(data);
+        setupLists(data.displayedElements);
+    } else {
+        loadElements().then((d) => {
+            setupLists(d.displayedElements);
+            selectedOptions = d.displayedElements;
+        });
+    }
+}
+
+loadUI();
